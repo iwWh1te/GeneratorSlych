@@ -41,6 +41,13 @@ private:
         // Генерация случайного числа от 1 до 100
         randomNumber = QRandomGenerator::global()->bounded(1, 101);
         numberLabel->setText(QString::number(randomNumber));
+
+        // Проверка четности числа и отображение результата
+        if (randomNumber % 2 == 0) {
+            numberLabel->setText(numberLabel->text() + " (четное)");
+        } else {
+            numberLabel->setText(numberLabel->text() + " (нечетное)");
+        }
     }
 
     void resetNumber() {
