@@ -59,6 +59,10 @@ private:
         // Вычисление суммы цифр числа и отображение результата
         int digitSum = calculateDigitSum(randomNumber);
         numberLabel->setText(numberLabel->text() + " | Сумма цифр: " + QString::number(digitSum));
+
+        // Вычисление факториала числа и отображение результата
+        int factorial = calculateFactorial(randomNumber);
+        numberLabel->setText(numberLabel->text() + " | Факториал: " + QString::number(factorial));
     }
 
     void resetNumber() {
@@ -87,6 +91,14 @@ private:
             number /= 10;
         }
         return sum;
+    }
+
+    int calculateFactorial(int number) {
+        int factorial = 1;
+        for (int i = 2; i <= number; ++i) {
+            factorial *= i;
+        }
+        return factorial;
     }
 };
 
