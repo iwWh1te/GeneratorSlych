@@ -55,6 +55,10 @@ private:
         } else {
             numberLabel->setText(numberLabel->text() + " (составное)");
         }
+
+        // Вычисление суммы цифр числа и отображение результата
+        int digitSum = calculateDigitSum(randomNumber);
+        numberLabel->setText(numberLabel->text() + " | Сумма цифр: " + QString::number(digitSum));
     }
 
     void resetNumber() {
@@ -74,6 +78,15 @@ private:
         }
 
         return true;
+    }
+
+    int calculateDigitSum(int number) {
+        int sum = 0;
+        while (number != 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+        return sum;
     }
 };
 
