@@ -11,8 +11,14 @@ public:
         // Создание кнопки "Сгенерировать число"
         QPushButton *generateButton = new QPushButton("Сгенерировать число", this);
 
-        // Обработка нажатия на кнопку
+        // Обработка нажатия на кнопку "Сгенерировать число"
         connect(generateButton, &QPushButton::clicked, this, &RandomNumberGenerator::generateRandomNumber);
+
+        // Создание кнопки "Сбросить число"
+        QPushButton *resetButton = new QPushButton("Сбросить число", this);
+
+        // Обработка нажатия на кнопку "Сбросить число"
+        connect(resetButton, &QPushButton::clicked, this, &RandomNumberGenerator::resetNumber);
 
         // Создание метки для отображения случайного числа
         numberLabel = new QLabel(this);
@@ -21,6 +27,7 @@ public:
         // Расположение элементов в горизонтальном слое
         QHBoxLayout *layout = new QHBoxLayout(this);
         layout->addWidget(generateButton);
+        layout->addWidget(resetButton);
         layout->addWidget(numberLabel);
 
         setLayout(layout);
@@ -28,11 +35,17 @@ public:
 
 private:
     QLabel *numberLabel;
+    int randomNumber;
 
     void generateRandomNumber() {
         // Генерация случайного числа от 1 до 100
-        int randomNumber = QRandomGenerator::global()->bounded(1, 101);
+        randomNumber = QRandomGenerator::global()->bounded(1, 101);
         numberLabel->setText(QString::number(randomNumber));
+    }
+
+    void resetNumber() {
+        randomNumber = 0;
+        numberLabel->clear();
     }
 };
 
